@@ -24,6 +24,16 @@ services:
     WORDPRESS_DB_NAME: wp_db
   volumes:
     - ./:/var/www/html
+ phpmyadmin:
+  depends_on: 
+   - mysql_database
+  image: phpmyadmin:latest
+  restart: always
+  ports:
+    - "9000:80"
+  environment:
+    PMA_HOST: mysql_database
+    PMA_PASSWORD: 1234
 
 volumes:
   mysql: {}
